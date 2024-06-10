@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<style type="text/css">
+		   h1,h2{
+		      border: 1px solid red;
+		      width: 50%; /* 부모기준 */
+		   }
+		   
+		   font{
+		      border: 1px solid #cccccc;
+		      display:  inline-block;  /* inline -> inline-block */
+		      width: 600px;
+		   }
+		</style>
+	</head>
+	<body>
+	  <hr>
+	     <h3>HeadLine Tag(h1~h6)</h3>
+	  <hr>
+	  <h1>H1 Tag</h1>
+	  <h2>H2 Tag</h2>
+	  <h3>H3 Tag</h3>
+	  <h4>H4 Tag</h4>
+	  <h5>H5 Tag</h5>
+	  <h6>H6 Tag</h6>
+	  <!-- 
+	      Block요소 
+	      1.크기는 부모요소 그대로 상속받는다
+	      2.크기지정이 가능하다
+	  -->
+	  
+	  <!-- 
+	      Inline요소
+	      1.크기는 컨텐츠(tag사이의 값:text) 크기에 따라 다르다
+	      2.크기지정 불가능
+	   -->
+	  <hr>
+	    <h3>
+	        font tag size=1~7<br>
+	        <font color=red >웹표준(Browser마다 틀리다)에서 font size 지양한다</font> <br>
+	        <font color='green' >해결방안:CSS이용해서 크기지정 할것</font>
+	    </h3>
+	  <hr>
+	  <font size="1">font size=1</font> <br>
+	  <font size='2'>font size=2</font> <br>
+	  <font size=3>font size=3</font> <br>
+	  <font size="4">font size=4</font> <br>
+	  <font size="5">font size=5</font> <br>
+	  <font size="6">font size=6</font> <br>
+	  <font size="7">font size=7</font> <br>
+	  
+	  
+	  <hr>
+	     <h3>CSS이용한 폰트크기 지정</h3>
+	  <hr>
+	  <p style="font-size: 15px; ">font size = 15</p>
+	  <p style="font-size: 20px; ">font size = 20</p>
+	  <p style="font-size: 25px; ">font size = 25</p>
+	  
+	</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+
+  /* Selector(CSS 대상지정) */
+  /* 1.Element Selector
+       tag 지정
+   */
+  p{ border : 1px solid gray; }
+
+  /* 2.id Selector 
+     #p1 => id="p1"
+  */
+  #p1 { color: blue; }
+  
+  /* 3.class Selector
+     .last => class="last"
+   */
+   .last {
+       color: blue;
+       /*            x   y  blur color     */
+       text-shadow: 1px 1px 2px black;
+   }
+   
+   /* 3.Group(Multi) Selector */
+   
+   #p2 , #p3 , #p4 {
+      border-color: orange;
+      box-shadow: 1px 1px 1px black;
+   }
+   
+</style>
+
+
+</head>
+<body>
+  <p id="p1">동해물과 백두산이</p>
+  <p id="p2">마르고 닮도록</p>
+  <p id="p3">하느님이 보우하사</p>
+  <p id="p4">우리나라 만세</p>
+  
+  <p class="last">무궁화 삼천리 화려강산</p>
+  <p class="last">대한사람 대한으로 길이 보전하세</p>
+</body>
+</html>

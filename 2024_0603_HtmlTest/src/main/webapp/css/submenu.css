@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+/* class selector */
+.sub-menu{
+	list-style:none;
+}
+
+.sub-menu > li > a{
+	
+}

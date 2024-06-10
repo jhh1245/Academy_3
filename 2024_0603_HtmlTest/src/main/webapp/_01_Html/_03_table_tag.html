@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+  
+  /* Element Selector */
+  table{
+     width: 600px;
+  }
+  
+  td{
+     text-align: center;
+  }
+  
+  /* Class Selector  class="subject" 
+     .classname 
+  */
+  
+  .subject {
+     text-align: left;
+     text-indent: 10px; /* 들여쓰기 */
+  }
+  
+</style>
+
+</head>
+<body>
+
+	<table border="1" cellspacing="0">
+		<caption>::::게시판::::</caption>
+		
+		<!-- tr: table row  -->
+		<!-- 제목 -->
+		<tr>
+		   <th width="10%">번호</th> <!-- table head -->
+		   <th width="60%">제목</th>
+		   <th width="15%">작성자</th>
+		   <th width="15%">조회수</th>
+		</tr> 
+	
+	    <!-- 내용 -->
+	    <tr>
+	        <!-- table data  -->
+	        <td>1</td>
+	        <td class="subject">내가 1등으로 방문했네..</td>
+	        <td>일길동</td>
+	        <td>1</td>  
+	    </tr>
+	    
+	    <tr>
+	        <!-- table data  -->
+	        <td>2</td>
+	        <td class="subject">오늘은 월요일...</td>
+	        <td>이길동</td>
+	        <td>10</td>  
+	    </tr>
+	
+	
+	</table>
+
+</body>
+</html>

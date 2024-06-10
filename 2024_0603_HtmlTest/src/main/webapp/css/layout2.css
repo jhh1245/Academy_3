@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+/* Universal Selector (모든요소) */
+
+/* 모든요소의 마진/패팅제거 
+   : 모든 브라우져에서 동일조건 설계 */
+*{
+	margin: 0;
+	padding: 0;
+}
+
+#main-box {
+	width: 800px;
+	height: 600px;
+	background: skyblue;	
+	
+	margin: auto; /* 중앙정렬 */
+}
+
+
+#header{
+	height: 100px;
+	width: 100%; /* 부모기준 */
+	background: #ffcccc;
+}
+
+#aside{
+	width: 30%;
+	height: 400px;
+	background: #ffffcc;
+	
+	float: left;
+}
+
+#content{
+	width: 70%;
+	min-height: 400px; /* 최소크기 400 */
+	height: auto;      /* 내용크기에 따라 증가 */
+	background: #ccffcc;
+	
+	float: left;
+}
+
+#footer{
+	height: 100px;
+	background: #ccccff;
+	
+	/* 부유속성 해제 */
+	clear:both; /* left/right all */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
