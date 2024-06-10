@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	//초기화 함수
+	window.onload = () => {
+		// array 선언
+		const sido_array = ["서울", "경기", "인천", "대전", "대구", "광주"];
+		
+		sido_array.push('제주'); // 맨뒤에 추가
+		let s = sido_array.pop(); // 맨뒤에서 추출
+		console.log("맨뒤",s);
+		  
+		let s1 = sido_array.shift(); // 맨앞에서 추출
+		console.log("맨앞",s1);
+		  
+		sido_array.unshift("서울"); // 맨앞에 넣기
+		  
+		document.write("sido_array's length : " + sido_array.length + "<br>");
+		  
+		document.write("sido_array[0] : " + sido_array[0] + "<br>");
+		  
+		document.write("----sido_array index방식----<br>");
+		for(let i = 0 ; i < sido_array.length ;i++){
+			document.write(`sido_array[${ i }] : ${ sido_array[i] }<br>`);
+		}
+		  
+		document.write("----sido_array for ~ in방식----<br>");
+		for(let i in sido_array){ // index 반환  
+			document.write(`sido_array[${ i }] : ${ sido_array[i] }<br>`);	  
+		}
+		  
+		document.write("----sido_array for ~ of 방식----<br>");
+		for(let sido of sido_array){ // 요소값 반환
+			document.write(sido + "<br>");	  
+		}
+		
+		document.write('<div id="disp"></div>')
+		document.write("---sido_array ul로 출력---<br>")
+		
+		document.write(`<ul>`);
+		for(let i in sido_array){ // index 반환  
+			document.write(`<li>${ sido_array[i] }</li>`);
+		}
+		document.write(`</ul>`);
+		
+		//document.getElementById("disp").innerHTML = html;
+	}
+	  
+</script>
+</head>
+<body>
+	
+</body>
+</html>

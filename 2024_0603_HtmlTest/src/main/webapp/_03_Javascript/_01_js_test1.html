@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+	// 정규 표현식 : 숫자만 입력하도록
+	// ^ : 시작하는 값 
+	// $ : 끝나는 값 
+	const regular_number = /^[0-9]{1,6}$/; // 숫자 1자리 ~ 6자리    
+		
+	function plus(){
+		// 2개의 입력값 읽어오기 
+		// id=su1 Element에서 value값 얻어온다. 
+		let su1 = document.getElementById("su1").value;
+		let su2 = document.getElementById("su2").value;
+		
+		// regular_number pattern과 일치하면 true, 아니면 false 
+		if(regular_number.test(su1) == false){
+			alert("s1 1~6자리 숫자만 입력하세요!!");
+			document.getElementById("su1").value = "";
+			document.getElementById("su1").focus();
+			return; // 이 함수를 호출한 곳으로 돌아간다 = 함수 끝 
+		}
+		
+		if(regular_number.test(su2) == false){
+			alert("s2 1~6자리 숫자만 입력하세요!!");
+			document.getElementById("su2").value = "";
+			document.getElementById("su2").focus();
+			return;
+		}
+
+		// 읽어온 값 연산한다. (문자를 숫자로 변환해야됨)
+		// 방법1) 		
+		let result = parseInt(su1) + parseInt(su2); 
+		
+		// 방법2) Number 객체로 만든다. 객체자체를 Number로 만든다.  
+		//let result = Number(su1) + Number(su2);
+		
+		// 결과값을 id=result인 Element에 넣는다. 
+		document.getElementById("result").value = result;		
+	}
+	
+	function minus(){
+		let su1 = document.getElementById("su1").value;
+		let su2 = document.getElementById("su2").value;
+		
+		if(regular_number.test(su1) == false){
+			alert("s1 1~6자리 숫자만 입력하세요!!");
+			document.getElementById("su1").value = "";
+			document.getElementById("su1").focus();
+			return; // 이 함수를 호출한 곳으로 돌아간다 = 함수 끝 
+		}
+		
+		if(regular_number.test(su2) == false){
+			alert("s2 1~6자리 숫자만 입력하세요!!");
+			document.getElementById("su2").value = "";
+			document.getElementById("su2").focus();
+			return;
+		}
+		
+		let result = parseInt(su1) - parseInt(su2); 
+		
+		document.getElementById("result").value = result;		
+	}
+	
+	function multiply(){
+		let su1 = document.getElementById("su1").value;
+		let su2 = document.getElementById("su2").value;
+		
+		if(regular_number.test(su1) == false){
+			alert("s1 1~6자리 숫자만 입력하세요!!");
+			document.getElementById("su1").value = "";
+			document.getElementById("su1").focus();
+			return; // 이 함수를 호출한 곳으로 돌아간다 = 함수 끝 
+		}
+		
+		if(regular_number.test(su2) == false){
+			alert("s2 1~6자리 숫자만 입력하세요!!");
+			document.getElementById("su2").value = "";
+			document.getElementById("su2").focus();
+			return;
+		}
+		
+		let result = parseInt(su1) * parseInt(su2); 
+		
+		document.getElementById("result").value = result;		
+	}
+	
+	function exponetial(){ 
+		let su1 = document.getElementById("su1").value;
+		let su2 = document.getElementById("su2").value;
+		
+		if(regular_number.test(su1) == false){
+			alert("s1 1~6자리 숫자만 입력하세요!!");
+			document.getElementById("su1").value = "";
+			document.getElementById("su1").focus();
+			return; // 이 함수를 호출한 곳으로 돌아간다 = 함수 끝 
+		}
+		
+		
+		
+		let result = parseInt(su1) * parseInt(su1); 
+		
+		document.getElementById("result").value = result;		
+	}
+		
+
+	function divide(){
+		let su1 = document.getElementById("su1").value;
+		let su2 = document.getElementById("su2").value;
+		
+		if(regular_number.test(su1) == false){
+			alert("s1 1~6자리 숫자만 입력하세요!!");
+			document.getElementById("su1").value = "";
+			document.getElementById("su1").focus();
+			return; // 이 함수를 호출한 곳으로 돌아간다 = 함수 끝 
+		}
+		
+		if(regular_number.test(su2) == false){
+			alert("s2 1~6자리 숫자만 입력하세요!!");
+			document.getElementById("su2").value = "";
+			document.getElementById("su2").focus();
+			return;
+		}
+		
+		if(parseInt(su2) == 0){ // 나누기는 su1이 0 이면 0으로
+			alert("0으로 나눌 수 없습니다.");
+			document.getElementById("result").value = 0;
+		} else {
+			let result = parseInt(su1) / parseInt(su2); 
+			
+			document.getElementById("result").value = result;	
+		}
+				
+	}
+	
+	function remain(){
+		let su1 = document.getElementById("su1").value;
+		let su2 = document.getElementById("su2").value;
+		
+		if(regular_number.test(su1) == false){
+			alert("s1 1~6자리 숫자만 입력하세요!!");
+			document.getElementById("su1").value = "";
+			document.getElementById("su1").focus();
+			return; // 이 함수를 호출한 곳으로 돌아간다 = 함수 끝 
+		}
+		
+		if(regular_number.test(su2) == false){
+			alert("s2 1~6자리 숫자만 입력하세요!!");
+			document.getElementById("su2").value = "";
+			document.getElementById("su2").focus();
+			return;
+		}
+		
+		
+		let result = parseInt(su1) % parseInt(su2); 
+		
+		document.getElementById("result").value = result;	
+		
+				
+	}
+	
+	
+</script>
+</head>
+
+<body>
+수1 : <input id="su1"><br>
+수2 : <input id="su2"><br>
+
+<input type="button" value="+" onclick="plus();" >
+<input type="button" value="-" onclick="minus();" >
+<input type="button" value="*" onclick="multiply();" >
+<input type="button" value="**" onclick="exponetial();" >                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+<input type="button" value="/" onclick="divide();">
+<input type="button" value="%" onclick="remain();"><br>
+
+결과 : <input id="result" value="0">
+</body>
+</html>

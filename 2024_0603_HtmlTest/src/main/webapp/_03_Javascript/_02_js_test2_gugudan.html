@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+	#disp{
+		width: 250px;
+		height: 300px;
+		background: black;
+		color: white;
+		padding: 20px
+	}
+</style>
+
+<script type="text/javascript">
+	function show_gugudan(){
+		let dan = document.getElementById("dan").value;
+		
+		// 2~9사이 값인지 검사 
+		const regular_number = /^[2-9]{1}$/; 
+		
+		if(regular_number.test(dan) == false){
+			alert("2~9 숫자만 입력하세요!!");
+			document.getElementById("dan").value='';
+			document.getElementById("dan").focus();
+			return;
+		}
+		// backticks(키보드 `키(~키))
+		// : String Template : ${변수} 
+		let html = `<h3>★${dan}단 보기</h3>`;
+		
+		for(let i=1; i <= 9; i++){
+			html += `${dan} x ${i} = ${dan * i}<br>`;
+			
+		}
+		
+		// id = disp인 div에 html을 넣는다. 
+		document.getElementById("disp").innerHTML = html;
+	}
+</script>
+</head>
+
+<body>
+	단 : <input id="dan">
+	<input type="button" value="결과보기" onclick="show_gugudan();" >
+	<hr>
+	
+	<div id="disp">여기에 결과 출력</div>
+</body>
+</html>
