@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+  table{
+     width: 400px;
+  }
+  
+  span{
+     display: inline-block;
+     text-indent: 20px;
+  }
+</style>
+
+
+<script src="../js/jumin.js"></script>
+
+<script type="text/javascript">
+  
+   // ? : 0  or 1
+   const regular_jumin = /^[0-9]{2}([0]\d|[1][0-2])([0][1-9]|[1-2]\d|[3][0-1])-[0-9]\d{6}$/;
+   
+   const jumin = new Jumin("");
+   
+   function result_show(){
+	   //입력한 주민번호 얻어오기
+	   let jumin_no = document.getElementById("jumin_no").value;
+	   
+	   if(regular_jumin.test(jumin_no) == false){
+		   alert("주민번호 형식이 틀립니다");
+		   return;
+	   }
+	   //jumin object의 jumin_no 넣는다
+	   jumin.jumin_no = jumin_no;
+	   
+	   // 유효성 검사 
+	   const bValid = jumin.isValid();
+	   
+	   if(bValid==false){
+		   alert("유효하지 않는 주민번호 입니다");
+		   return;
+	   }
+	   
+	   //각각의 부가정보(출생년도/나이/...) 구한다
+	   const year = jumin.getYear();
+	   const age = jumin.getAge();
+	   const gender = jumin.getGender();
+	   const tti = jumin.getTti();
+	   const season = jumin.getSeason();
+	   const local = jumin.getLocal();
+	   const ganji = jumin.getGanji();
+	   
+	   document.getElementById("birth-year").innerHTML = year;
+	   document.getElementById("age").innerHTML = age;
+	   document.getElementById("gender").innerHTML = gender;
+	   document.getElementById("tti").innerHTML = tti;
+	   document.getElementById("season").innerHTML = season;
+	   document.getElementById("local").innerHTML = local;
+	   document.getElementById("ganji").innerHTML = ganji;
+	   
+   }
+
+</script>
+
+
+</head>
+<body>
+
+주민번호:<input id="jumin_no" value="901222-1234568">
+         <input type="button" value="결과보기" onclick="result_show();">
+<hr>
+<table border="1">
+  <tr>
+     <th>출생년도</th>
+     <td><span id="birth-year">1990</span></td>
+  </tr>
+  <tr>
+     <th>나이</th>
+     <td><span id="age">30</span></td>
+  </tr>
+   <tr>
+     <th>성별</th>
+     <td><span id="gender">남</span></td>
+  </tr>
+  <tr>
+     <th>띠</th>
+     <td><span id="tti">쥐</span></td>
+  </tr>
+  <tr>
+     <th>계절</th>
+     <td><span id="season">겨울</span></td>
+  </tr>
+  <tr>
+     <th>지역</th>
+     <td><span id="local">서울</span></td>
+  </tr>
+   <tr>
+     <th>간지</th>
+     <td><span id="ganji">간지</span></td>
+  </tr>
+  
+  
+</table>         
+           
+
+</body>
+</html>

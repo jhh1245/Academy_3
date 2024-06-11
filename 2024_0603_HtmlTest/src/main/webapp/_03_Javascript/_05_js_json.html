@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+
+/* JSON(Javascript ) 
+   : 자바스크립트 객체 표현법 
+   : 들어올 수 있는 값 => string, number, object, array, boolean, null
+
+	JSON 표기법 
+	객체 -> {"name":"value", "name":"value", ... }
+ */
+ 
+const p = {"name":"홍길동", "age":20, "married":false};
+ 
+/* JSON Data 표기법 */
+// 1. dot 표기법 
+let key = "age";
+
+document.write("p's name : " + p.name + "<br>");
+// 불가능 
+// document.write("p's name : " + p.key + "<br>");
+ 
+// 2. square bracket 
+document.write("p's age : " + p[key] + "<br>");
+document.write("p's age : " + p['age'] + "<br>");
+
+
+key = "married";
+document.write(`p's ${key} : ${p[key]}<br>`);
+
+/* 예제2 Array */
+const p1 = {
+			"name":{
+					"fullName":"홍길동",
+					"familyName":"홍",
+					"givenName":"길동"
+			       },
+			"hobby":["운동", "낚시", "영화감상"], 
+			"tel":{"cellPhone":"010-111-1234", 
+				   "homePhone":"02-111-1234"
+				  }
+		  };
+document.write(`전체이름: ${p1.name.fullName} <br>`);
+document.write(`성: ${p1.name.familyName} <br>`);
+document.write(`이름: ${p1.name.givenName} <br>`);
+document.write(`이름: ${p1['name']['fullName']} <br>`)
+
+for(let i=0; i<p1.hobby.length; i++){
+	document.write(`취미${i+1}: ${p1.hobby[i]} <br>`);	
+}
+
+// for~in은 인덱스 반환 
+for(let i in p1.hobby){
+	document.write(`취미${parseInt(i)+1} : ${p1.hobby[i] }<br>`)
+}
+
+document.write(`휴대전화 : ${p1.tel.cellPhone }<br>`)
+document.write(`집전화 : ${p1.tel.homePhone }<br>`)
+
+</script>
+</head>
+<body>
+
+</body>
+</html>
