@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- GET : url 주소의 Query를 통해서 Parameter가 전달 
+			   보안취약. 전송용량 제한 O 
+			-->
+	<form method="get" action="lifecycle.do">
+		<input name="msg">
+		<input type="submit" value="GET 요청">
+	</form>
+	
+	<!-- POST : request body 안에 숨겨져서 전달
+				보안성 좋음. 전송용량 제한 X
+	-->
+	<form method="post" action="lifecycle.do">
+		<input name="msg">
+		<input type="submit" value="POST 요청">
+	</form>
+</body>
+</html>

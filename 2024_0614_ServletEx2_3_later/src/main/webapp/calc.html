@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	const regular_number = /^[0-9]{1,5}$/; // 숫자 5자리까지
+	function send(f){ // 자바스크립트에는 변수 명만 쓰면 된다. 자료형 쓰지 말 것 
+		
+		let su1 = f.su1.value;
+		let su2 = f.su2.value; // 이 함수를 호출한 form
+		
+		// 입력값 체크 ... :숫자만 입력..
+		if(regular_number.test(su1) == false){
+			alert('1~5자리 숫자만 입력하세요.');
+			f.su1.value = '';
+			f.su1.foccs();
+			return
+		}
+		
+		if(regular_number.test(su2) == false){
+			alert('1~5자리 숫자만 입력하세요.');
+			f.su2.value = '';
+			f.su2.foccs();
+			return
+		}
+		
+		f.actipn = "calc.do";
+		f.submit(); // 괄호 누락되면 안된다! 함수 호출시 () 필수 
+	}
+
+</script>
+</head>
+<body>
+<form action="cal.do" method="post">
+   수1 : <input type="text" name="su1"><br>
+   수2 : <input type="text" name="su2"><br>
+   <input type="button" value="계산해줘" onclick="send(this.form);">
+   <!-- 지금 form에 대한 정보 . 이 this(버튼)을 소유하고 있는 form  -->
+</form>
+</body>
+</html>
