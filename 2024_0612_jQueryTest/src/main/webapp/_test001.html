@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- on-line참조 : CDN(Content Delivery Network) -->
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script type="text/javascript">
+
+/* jQuery 사용형식 
+   jQuery(selector).action(처리함수);
+   jQuery(selector).event(처리함수);
+   jQuery는-> $기호를 사용
+   
+   ${selector}.event(처리함수;)
+ */
+ 
+window.onload = function(){
+	console.log("--- window.onload ---");
+};
+ 
+/* jQuery 초기화 */ 
+jQuery(document).ready(function(){
+	console.log("--- jQuery(document).ready() ---");
+}); //window.onload = function(){};랑 같다. 윈도우가 로드 완료되면 함수를 호출한다. 
+
+/* jQuery 초기화2 */
+$(document).ready(function(){
+	console.log("--- $(document).ready() ---");
+}); 
+
+/* jQuery 초기화3 */
+$(function(){ // 문서가 초기화되면 아래 내용 수행 
+	console.log("--- $(function(){}) ---");
+}); // (document).ready가 생략 
+  
+ 
+</script>
+
+</head>
+<body>
+
+</body>
+</html>
