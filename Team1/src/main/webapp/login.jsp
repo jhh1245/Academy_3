@@ -17,7 +17,7 @@ $(document).ready(function(){});
 </script>
 </head>
 <body>
- 	<form action="loginProcess2.jsp" method="post">
+ 	<form action="loginProcess.jsp" method="post">
 		<div>
 			<span class="item">아이디</span>
 			<input type="text" id="m_id" name="m_id" />

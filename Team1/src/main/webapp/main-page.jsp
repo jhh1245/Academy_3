@@ -134,6 +134,7 @@ $(document).ready(function(){
 		<a class="join"  href="register.jsp" >회원가입</a>
 		<a class="join" href="login.jsp">로그인</a>
 		<a class="write" href = "#">글쓰기</a> <!--  //글쓰기page 생성해야함 -->
+		<a href="adminMemList.jsp">관리자페이지</a>
 		<!--header end-->
 		
 		<!--Menu start  -->
