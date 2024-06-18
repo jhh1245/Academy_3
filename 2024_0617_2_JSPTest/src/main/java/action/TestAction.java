@@ -19,6 +19,7 @@ public class TestAction extends HttpServlet {
 	int n = 10;
 	Calendar now = Calendar.getInstance();
 	
+	//멤버메소드
 	void sub() {
 		
 	}
