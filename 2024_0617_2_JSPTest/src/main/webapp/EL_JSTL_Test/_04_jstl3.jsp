@@ -35,8 +35,10 @@
 		<c:forEach var="sido" items="${ requestScope.sido_array }"> <!-- for(String sido: sido_array) -->  
 		<!-- EL 표현식을 쓴다. request에 sido_array를 넣었다.  -->
 		<!-- el 표현법으로는 requestScope다. -->
+		
 			<li>${pageScope.sido}</li> 
 			<!-- forEach에서 만든 변수는(items) pageScope에 있다.  -->
+			
 		</c:forEach>
 	</ul>
 	
