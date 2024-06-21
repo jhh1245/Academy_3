@@ -16,7 +16,7 @@
 #box {
 	width:600px;
 	margin:auto;
-	margin-top: 50px;
+	margin-top: 50px; 
 	box-shadow: 2px 2px 2px black;
 }
 table {

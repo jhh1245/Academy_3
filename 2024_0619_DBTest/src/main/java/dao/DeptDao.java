@@ -88,7 +88,7 @@ public class DeptDao {
 		return list;
 	}
 	
-	// 부서 조회 
+	// 사원
 	public List<SawonVo> selectSawonList() { //select한 결과를 List로 만든다. 
 		List<SawonVo> list = new ArrayList<SawonVo>();
 
@@ -142,4 +142,64 @@ public class DeptDao {
 		}
 		return list;
 	}
+	
+	// 부서 조회 
+	public DeptVo selectOne(int deptno) {
+		
+		DeptVo vo = null;
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = "select * from dept where deptno=?";
+
+		try {
+			//1.Connection 얻어오기
+			conn = DBService.getInstance().getConnection();
+
+			//2.PreparedStatement
+			pstmt = conn.prepareStatement(sql);
+
+			//3.pstmt parameter index채우기
+			pstmt.setInt(1, deptno);
+			
+			//4.ResultSet 얻어온다
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+
+				//저장객체 생성->레코드에서 읽은 값을 넣는다
+				vo = new DeptVo();
+
+				//rs가 가리키는 레코드값을 vo에 넣는다
+				vo.setDeptno(rs.getInt("deptno"));
+				vo.setDname(rs.getString("dname"));
+				vo.setLoc(rs.getString("loc"));
+
+			} //end:while
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+
+		} finally {
+
+			//마무리 작업(열린역순으로 닫기)
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return vo;
+	}
+	
+	
 }
