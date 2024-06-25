@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script type="text/javascript">
+	function result(){
+		// let word = document.getElementById("word").value.trim(); // DOM API 
+		let word = $("#word").val().trim();
+		
+		if(word==''){
+			alert('단어를 입력하세요!');
+			// document.getElementById("word").value ='';
+			$("#word").val("");
+			
+			// document.getElementById("word").focus();
+			$("#word").focus();
+			
+			return; 
+		}
+		
+		// jQuery Ajax이용 
+		// 형식) $.ajax({name:value, name:value, ...})
+		
+		$.ajax({
+			// 요청할 때 ----> 
+			async   : true,               // true(비동기), false(동기)
+			type    : "GET",              // 요청 방식 (get/post)
+			url     : "word.do",          // 호출 대상 
+			data    : {"word":word},      // parameter : word.do?word=word
+					
+					
+			// 서버에서 응답받을 때 <-----
+			dataType : "html",        // 
+			success  : function(result){   // 요청정보가 정상 처리되었을 경우 응답데이터를 받는다. // 변수 이름은 마음대로
+				$("#disp").html(result);   // document.getElementById("disp").innerHTML = data; 와 같다. 
+			},
+			error   : function(err){
+				alert(err.responseText);   // 에러 발생시 콜백 되는 함수 
+			}       
+		});
+		
+		
+		
+	}
+	
+</script>
+</head>
+<body>
+단어 : <input id="word">
+	  <input type="button" value="결과확인" onclick="result()">
+<hr>
+<div id="disp"></div>
+</body>
+</html>

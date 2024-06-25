@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<!-- XMLHttpRequest 객체를 사용할 수 있는 Library 연결 -->
+<script type="text/javascript" src="js/httpRequest.js"></script>
+
+<script type="text/javascript">
+	function result(){
+		let word = document.getElementById("word").value.trim(); // DOM API 
+		// 자바스크립트는 html를 관리하는 객체를 document이라고 한다.
+		// document를 이용해서 id가 word인 요소의 값을 가져온다. 
+		if(word==''){
+			alert('단어를 입력하세요!');
+			document.getElementById("word").value ='';
+			document.getElementById("word").focus();
+			// jQeury는 $("word")라고 쓰면 된다.
+			return 
+		}
+		
+		const url = "word.do";        // WordAction 생성 
+		const param = "word=" + word; // word.do?word=one;
+		
+		// Ajax 통신으로 요청이 된다. 
+		// 요청하는 함수 !!! word.do를 호출한다. ----> 
+		sendRequest(url, param, callbackFn, true); // sendRequest = 통신쉽도록 만든 js 함수이다.
+	}
+	
+	// 결과 수신받을 함수 <------ 
+	function callbackFn(){
+		let readyState = xhr.readyState;
+		let status     = xhr.status;
+		console.log("readyState="+readyState, "status="+status);
+			
+		if(xhr.readyState == 4 && xhr.status == 200){ // 4번 상태일때만 
+			let data = xhr.responseText;
+			console.log("data=" + data);
+			document.getElementById("disp").innerHTML = data;
+		}
+	}
+</script>
+</head>
+<body>
+단어 : <input id="word">
+	  <input type="button" value="결과확인" onclick="result()">
+<hr>
+<div id="disp"></div>
+</body>
+</html>
