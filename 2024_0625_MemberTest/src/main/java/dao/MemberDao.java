@@ -38,7 +38,7 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "select * from member order by mem_idx";
+		String sql = "select * from member_test order by mem_idx";
 
 		try {
 			//1.Connection 얻어오기
@@ -103,7 +103,7 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "select * from member where mem_idx=?";
+		String sql = "select * from member_test where mem_idx=?";
 
 		try {
 			//1.Connection 얻어오기
@@ -164,7 +164,7 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "select * from member where mem_id=?";
+		String sql = "select * from member_test where mem_id=?";
 
 		try {
 			//1.Connection 얻어오기
@@ -219,7 +219,7 @@ public class MemberDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 
-		String sql = "insert into member values(seq_member_idx.nextVal, ?, ?, ?, ?, ?, ?, default, default)";
+		String sql = "insert into member_test values(seq_member_idx.nextVal, ?, ?, ?, ?, ?, ?, default, default)";
 
 		try {
 			// 1. Connection 얻어오기 
@@ -256,4 +256,96 @@ public class MemberDao {
 
 	} // end:insert() 
 	
+	public int delete(int mem_idx) {
+		int res = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+
+		String sql = "delete from member_test where mem_idx=?";
+
+		try {
+			//1.Connection 얻어오기
+			conn = DBService.getInstance().getConnection();
+
+			//2.PreparedStatement
+			pstmt = conn.prepareStatement(sql);
+
+			//3.pstmt parameter index 채우기
+            pstmt.setInt(1, mem_idx);   
+            
+			//4.DB delete
+			res = pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+
+		} finally {
+
+			//마무리 작업(열린역순으로 닫기)
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return res;
+
+	}//end:delete()
+	
+	
+	public int update(MemberVo vo) {
+		// TODO Auto-generated method stub
+
+		int res = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+        //                                       1         2             3          4        5           6                7 
+		String sql = "update member_test set mem_name=?,mem_pwd=?,mem_zipcode=?,mem_addr=?,mem_ip=?,mem_grade=?  where mem_idx=?";
+
+		try {
+			//1.Connection 얻어오기
+			conn = DBService.getInstance().getConnection();
+
+			//2.PreparedStatement
+			pstmt = conn.prepareStatement(sql);
+
+			//3.pstmt parameter index 채우기
+			pstmt.setString(1, vo.getMem_name());
+			pstmt.setString(2, vo.getMem_pwd());
+			pstmt.setString(3, vo.getMem_zipcode());
+			pstmt.setString(4, vo.getMem_addr());
+			pstmt.setString(5, vo.getMem_ip());
+			pstmt.setString(6, vo.getMem_grade());
+			pstmt.setInt(   7, vo.getMem_idx());
+			
+			//4.DB update
+			res = pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+
+		} finally {
+
+			//마무리 작업(열린역순으로 닫기)
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return res;
+
+	}//end:update()
 }

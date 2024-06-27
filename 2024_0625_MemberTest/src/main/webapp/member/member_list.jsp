@@ -16,17 +16,17 @@
 
 <style type="text/css">
    #box{
-      width: 1000px;
+      width: 1200px;
       margin: auto;
       margin-top: 50px;
    }
    
    #title{
       text-align: center;
-      font-weight: bolod;
+      font-weight: bold;
       font-size: 32px;
-      color: green;
-      text-shadow: 1px 1px 1px black;
+      color: skyblue;
+      /* text-shadow: 1px 1px 1px black; */
    }
    
    #empty_msg{
@@ -37,7 +37,7 @@
    }
    
    th{
-      background: #333333 !important;
+      background: skyblue !important;
       color: white;
    }
    
@@ -47,21 +47,60 @@
    
 </style>
 
+<script type="text/javascript">
+	function del(mem_idx){
+
+		//console.log(mem_idx,"삭제");
+		if(confirm("정말 삭제 하시겠습니까?")==false) return;
+		
+		//삭제요청
+		location.href = "delete.do?mem_idx=" + mem_idx;   //MemberDeleteAction
+	}
+</script>
+
+<script type="text/javascript">
+	//$(document).ready(function(){});  // 이것과 동일하다. html 요소가 모두 ready되면  
+	$(function() {
+		setTimeout(showMessage, 100);
+	});
+	
+	function showMessage(){
+	   // /member/list.do?reason=not_admin_delete
+	   if("${ param.reason eq 'not_admin_delete'}" == "true"){
+		   
+		   alert("관리자는 삭제할 수 없습니다");
+	   }
+	}
+	
+</script>
+
 </head>
 <body>
 
 	<div id="box">
-	     <h1 id="title">::::회원목록::::</h1> 
+	     <h1 id="title">회원목록</h1> 
+	     
 	     <div style="text-align: right;">
-	         <input class="btn btn-primary" type="button"  value="로그인" 
-	                onclick="location.href='login_form.do'">
+	     
+	     <!-- 로그인이 안된 경우 -->
+     	 <c:if test="${empty sessionScope.user }"> <!-- 세션 스코프안에 user가 비어 있는지? -->
+        	<input class="btn btn-info" type="button"  value="로그인" 
+                onclick="location.href='login_form.do'">
+       	 </c:if>
 	     </div>
 	     
-	     <div style="margin-top: 50px; margin-bottom: 5px;">
-	        <input class="btn btn-primary" type="button" value="회원가입"  
+	     <!-- 로그인이 된 경우 -->
+     	 <c:if test="${not empty sessionScope.user }"> <!-- 세션 스코프안에 user가 안 비어 있는지? -->
+     		<b>${sessionScope.user.mem_name }</b>님 환영합니다.
+        	<input class="btn btn-info" type="button" value="로그아웃"  
+               onclick="location.href='logout.do'">
+         </c:if>
+	     </div>
+	     
+	     <div style="margin-top: 5px; margin-bottom: 5px;">
+	     <input class="btn btn-info" type="button" value="회원가입"  
 	               onclick="location.href='insert_form.do'">
-	     </div>
-	     
+	               
 	     <table class="table">
 	       
 	        <!-- 테이블 타이틀 -->
@@ -92,8 +131,13 @@
 	              <td>${ fn:substring(vo.mem_regdate,0,10) }</td>
 	              <td>${ vo.mem_grade }</td>
 	              <td>
-	                  <input class="btn  btn-success"  type="button"  value="수정">
-	                  <input class="btn  btn-danger"   type="button"  value="삭제">
+	                  <!--                  관리자                또는       로그인한 유저     -->
+	                  <c:if test="${ (user.mem_grade eq '관리자') or ( user.mem_idx eq vo.mem_idx ) }">
+		                  <input class="btn  btn-success"  type="button"  value="수정"
+		                         onclick="location.href='modify_form.do?mem_idx=${ vo.mem_idx }'">
+		                  <input class="btn  btn-danger"   type="button"  value="삭제"  
+		                         onclick="del('${ vo.mem_idx }');">
+	                  </c:if>         
 	              </td>
 	           </tr>
 	        </c:forEach>

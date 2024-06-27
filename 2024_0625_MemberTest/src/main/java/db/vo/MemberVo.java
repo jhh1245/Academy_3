@@ -11,6 +11,9 @@ public class MemberVo {
 	String mem_regdate;
 	String mem_grade;
 	
+	public MemberVo() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	public MemberVo(String mem_name, String mem_id, String mem_pwd, String mem_zipcode, String mem_addr,
 			String mem_ip) {
@@ -22,9 +25,23 @@ public class MemberVo {
 		this.mem_addr = mem_addr;
 		this.mem_ip = mem_ip;
 	}
-	public MemberVo() {
-		// TODO Auto-generated constructor stub
+	
+		
+	
+
+	public MemberVo(int mem_idx, String mem_name, String mem_id, String mem_pwd, String mem_zipcode, String mem_addr,
+			String mem_ip, String mem_grade) {
+		super();
+		this.mem_idx = mem_idx;
+		this.mem_name = mem_name;
+		this.mem_id = mem_id;
+		this.mem_pwd = mem_pwd;
+		this.mem_zipcode = mem_zipcode;
+		this.mem_addr = mem_addr;
+		this.mem_ip = mem_ip;
+		this.mem_grade = mem_grade;
 	}
+
 	public int getMem_idx() {
 		return mem_idx;
 	}
