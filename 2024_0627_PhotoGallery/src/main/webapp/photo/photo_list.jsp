@@ -106,9 +106,13 @@
 			url		:	"photo_one.do",     //PhotoOneAction
 			data	:	{"p_idx": p_idx},   //parameter => photo_one.do?p_idx=5
 			dataType:	"json",
-			success	:	function(res_data){
+			success	:	function(res_data) {
 				// res_data = {"p_idx":5, "p_title":"제목" , "p_content":"내용" , "p_filename":"a.jpg",....}
 				console.log(res_data);
+				
+				//download받을 화일명...
+				g_p_filename = res_data.p_filename;
+				g_p_idx      = res_data.p_idx;
 				
 				$("#pop_mem_name").html("올린이 : " + res_data.mem_name);
 				$("#pop_image").prop("src","../images/" + res_data.p_filename);

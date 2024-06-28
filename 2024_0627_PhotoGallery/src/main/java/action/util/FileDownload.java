@@ -34,9 +34,12 @@ public class FileDownload extends HttpServlet {
 		String dir = request.getParameter("dir");
 		String fullpath = getServletContext().getRealPath(dir);
 		String filename = "";
+		
 		filename = request.getParameter("filename");
 		String fullpathname = String.format("%s/%s", fullpath,filename);
+		
 		//System.out.println(fullpathname);
+		
 		File file = new File(fullpathname);
 		byte [] b = new byte[1024*1024*4];
 		
@@ -89,15 +92,13 @@ public class FileDownload extends HttpServlet {
             }
             
             
-        }else if(strAgent.indexOf("Firefox") > -1){
+        } else if(strAgent.indexOf("Firefox") > -1){
         	//Firefox : 공백문자이후은 인식안됨...
         	value = "attachment; filename=" + new String(filename.getBytes(), "ISO-8859-1");
-        }
-       else {
+        } else {
             // IE 를 제외한 브라우저
             value = "attachment; filename=" + new String(filename.getBytes(), "ISO-8859-1");
         }
-        
    
         response.setContentType("Pragma: no-cache"); 
 
@@ -105,23 +106,22 @@ public class FileDownload extends HttpServlet {
 		response.setContentType("application/octet-stream;charset=8859_1;");
 		//모든 화일에 대하고 다운로드 대화상자가 열리게 설정
 		//Content-Disposition : attachment
-		 response.setHeader("Content-Disposition", value);
+		response.setHeader("Content-Disposition", value);
 		//전송타입은 binary(이진화일)
 		response.setHeader("Content-Transfer-Encoding", "binary;");
-		if(file.isFile())
-		{
+		
+		
+		if(file.isFile()) {
 			BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file));
-			BufferedOutputStream bos = new BufferedOutputStream(response.getOutputStream());
+			BufferedOutputStream bos = new BufferedOutputStream(response.getOutputStream()); // 소캣의 스트림을 얻어와서 
 			int i=0;
-			try
-			{
-				while((i=bis.read(b))!=-1)
-				{
+			try { // File을 읽어서 보낸다.
+				while((i=bis.read(b))!=-1) {
 					bos.write(b,0,i);
 				}
-			}catch(Exception e){
+			} catch(Exception e){
 				//e.printStackTrace();
-			}finally {
+			} finally {
 				if(bos!=null)bos.close();
 				if(bis!=null)bis.close();
 				

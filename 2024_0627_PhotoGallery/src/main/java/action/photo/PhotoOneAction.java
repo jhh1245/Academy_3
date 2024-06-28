@@ -50,11 +50,8 @@ public class PhotoOneAction extends HttpServlet {
 		json.put("p_ip", 		vo.getP_ip());
 		json.put("mem_idx", 	vo.getMem_idx());
 		json.put("mem_name", 	vo.getMem_name());
-		
-		
+				
 		response.getWriter().print(json.toString());
-			
-		
 
 	}
 
