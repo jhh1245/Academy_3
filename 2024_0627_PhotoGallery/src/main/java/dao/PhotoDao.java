@@ -250,6 +250,90 @@ public class PhotoDao {
 		return res;
 
 	}//end:delete()
+
 	
+	public int update_filename(PhotoVo vo) {
+		int res = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+
+		String sql = "update photo set p_filename=? where p_idx=?"; // ; 세미콜론은 없어야됨  
+
+		try {
+			// 1. Connection 얻어오기 
+			conn = DBService.getInstance().getConnection();
+
+			// 2. PreparedStatement 
+			pstmt = conn.prepareStatement(sql);
+
+			// 3. pstmt parameter index 채우기 
+			pstmt.setString(1,  vo.getP_filename());
+			pstmt.setInt(2, vo.getP_idx());
+			
+			// 4. DB update 
+			res = pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace(); // 어떤문제인지 바로 알 수 있도록 
+		} finally {
+			// 마무리 작업 (열린 역순으로 닫기)
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return res;
+
+	} // end:update_filename() 
 	
+	public int update(PhotoVo vo) {
+		// TODO Auto-generated method stub
+
+		int res = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+        //                                     1           2      3                               4 
+		String sql = "update photo set p_title=?,p_content=?,p_ip=?,p_regdate=sysdate where p_idx=?";
+
+		try {
+			//1.Connection 얻어오기
+			conn = DBService.getInstance().getConnection();
+
+			//2.PreparedStatement
+			pstmt = conn.prepareStatement(sql);
+
+			//3.pstmt parameter index 채우기
+			pstmt.setString(1, vo.getP_title());
+			pstmt.setString(2, vo.getP_content());
+			pstmt.setString(3, vo.getP_ip());
+			pstmt.setInt(   4, vo.getP_idx());
+
+			//4.DB update
+			res = pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+
+		} finally {
+
+			//마무리 작업(열린역순으로 닫기)
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return res;
+
+	}//end:update()
 }

@@ -41,7 +41,6 @@
    function send(f){
 	   
 	   //입력값 체크....
-	   
 	   var p_title = f.p_title.value.trim();
 	   var p_content = f.p_content.value.trim();
 	   
@@ -51,7 +50,6 @@
 		   f.p_title.focus();
 		   return;
 	   }
-	   
 	   
 	   if(p_content==''){
 		   alert('내용을 입력하세요');
@@ -76,22 +74,20 @@
        // 파일이 선택되면 업로드를 진행한다.
        photo_upload();
    }
-
-
    
    function photo_upload() {
 
 	   //파일선택->취소시
-	   if( $("#ajaxFile")[0].files[0]==undefined)return;
+	   if( $("#ajaxFile")[0].files[0]==undefined) return;
 	   
-	   	   
 	   var form = $("ajaxForm")[0];
        var formData = new FormData(form);
+       
        formData.append("p_idx", '${ vo.p_idx }');
        formData.append("photo", $("#ajaxFile")[0].files[0]);
 
        $.ajax({
-             url : "photo_upload.do", //PhotoUploadAction
+             url : "photo_upload.do", //PhotoUploadAction. 이미지만 수정하는 서블릿 
              type : "POST",
              data : formData,
              processData : false,
@@ -102,7 +98,7 @@
                  
             	 //location.href=''; //자신의 페이지를 리로드(refresh)
             	 
-            	 $("#my_img").attr("src","../upload/" + result_data.p_filename);
+            	 $("#my_img").attr("src","../images/" + result_data.p_filename);
             	 
              },
              error : function(err){
